@@ -1,0 +1,64 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Game API",
+      "description": "Dokumentasi API untuk mengelola karakter game"
+    },
+    "host": "127.0.0.1:5000",
+    "schemes": ["http"],
+    "paths": {
+      "/characters": {
+        "get": {
+          "summary": "Ambil semua karakter",
+          "responses": {
+            "200": {"description": "Berhasil mendapatkan data"}
+          }
+        },
+        "post": {
+          "summary": "Tambahkan karakter baru",
+          "parameters": [
+            {"in": "body", "name": "body", "required": true, "schema": {"$ref": "#/definitions/Character"}}
+          ],
+          "responses": {
+            "201": {"description": "Berhasil menambahkan karakter"}
+          }
+        }
+      },
+      "/characters/{id}": {
+        "put": {
+          "summary": "Perbarui karakter",
+          "parameters": [
+            {"name": "id", "in": "path", "required": true, "type": "integer"},
+            {"in": "body", "name": "body", "required": true, "schema": {"$ref": "#/definitions/Character"}}
+          ],
+          "responses": {
+            "200": {"description": "Berhasil memperbarui karakter"}
+          }
+        },
+        "delete": {
+          "summary": "Hapus karakter",
+          "parameters": [
+            {"name": "id", "in": "path", "required": true, "type": "integer"}
+          ],
+          "responses": {
+            "200": {"description": "Berhasil menghapus karakter"}
+          }
+        }
+      }
+    },
+    "definitions": {
+      "Character": {
+        "type": "object",
+        "properties": {
+          "name": {"type": "string"},
+          "level": {"type": "integer"},
+          "strength": {"type": "integer"},
+          "health": {"type": "integer"},
+          "mana": {"type": "integer"},
+          "agility": {"type": "integer"}
+        }
+      }
+    }
+  }
+  
